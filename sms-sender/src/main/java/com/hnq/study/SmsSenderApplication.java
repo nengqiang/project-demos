@@ -5,14 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author henengqiang
- * @date 2018/9/4
+ * @date 2018/9/5
  */
 @SpringBootApplication
-public class MailSenderApplication {
+public class SmsSenderApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MailSenderApplication.class);
-        System.out.println("==========>>MailSenderApplication Start Success!");
+        SpringApplication.run(SmsSenderApplication.class);
+        System.out.println("==========>>SmsSenderApplication Start Success!");
     }
 
 }
