@@ -3,8 +3,45 @@
     <head>
         <meta charset="UTF-8">
         <title>后台管理主页面</title>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                background-color: #f0f2f5;
+            }
+            #header-box {
+                width: 100%;
+                height: 60px;
+            }
+            #footer-box {
+                width: 100%;
+                height: 50px;
+                position: fixed;
+                bottom: 0;
+            }
+
+            #data {
+                width: 70%;
+                height: auto;
+                margin: 20px auto;
+                background-color: white;
+            }
+        </style>
     </head>
     <body>
-        <p>Index</p>
+        <div id="header-box"></div>
+        <div id="data">
+            <div id="thirdTool"></div>
+        </div>
+        <div id="footer-box"></div>
+        <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="../js/showalert.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#header-box").load("/page/header");
+                $("#footer-box").load("/page/footer");
+                $("#thirdTool").load("/page/thirdTool");
+            });
+        </script>
     </body>
 </html>

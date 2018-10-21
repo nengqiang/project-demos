@@ -1,10 +1,9 @@
 package com.hnq.blog.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.hnq.blog.bean.Answer;
-import com.hnq.blog.dao.domain.Role;
-import com.hnq.blog.dao.domain.User;
-import com.hnq.blog.service.ILoginService;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -17,10 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.alibaba.fastjson.JSON;
+import com.hnq.blog.bean.Answer;
+import com.hnq.blog.dao.domain.Role;
+import com.hnq.blog.dao.domain.User;
+import com.hnq.blog.service.ILoginService;
 
 /**
  * @author henengqiang
@@ -31,6 +31,8 @@ import java.util.Map;
 public class LoginController extends AbstractController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+    public static String theUserName;
 
     @Autowired
     private ILoginService loginService;
@@ -48,13 +50,15 @@ public class LoginController extends AbstractController {
         try {
             subject.login(token);
             session.setAttribute("user", subject.getPrincipal());
+            theUserName = userName;
             List<Role> roles = loginService.findUserRolesPermissionsByName(userName).getRoles();
             for (Role role : roles) {
                 if ("admin".equals(role.getRoleName())) {
                     return new ModelAndView("backstage/admin");
                 }
             }
-            return new ModelAndView("backstage/dashboard");
+            return new ModelAndView("backstage/dashboard")
+                    .addObject("userName", userName);
         } catch (Exception e){
             return new ModelAndView("backstage/login")
                     .addObject("errorMsg", "登陆失败！");

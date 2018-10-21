@@ -30,7 +30,7 @@ public class ThirdToolController extends AbstractController {
             int result = thirdToolService.createThirdTool(toolName, toolType, link);
             return renderAnswer( "添加了" + result + "条数据。");
         } catch (Exception e) {
-            return renderError("操作失败。", e.getMessage());
+            return renderError("操作失败。" + e.getMessage());
         }
     }
 

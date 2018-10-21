@@ -17,4 +17,20 @@ public class PageController {
         return new ModelAndView("pages/index");
     }
 
+    @RequestMapping(value = "/header")
+    public ModelAndView getHeader() {
+        return new ModelAndView("fragments/header")
+                .addObject("userName", LoginController.theUserName);
+    }
+
+    @RequestMapping(value = "/footer")
+    public ModelAndView getFooter() {
+        return new ModelAndView("fragments/footer");
+    }
+
+    @RequestMapping(value = "/thirdTool")
+    public ModelAndView getThirdTool() {
+        return new ModelAndView("backstage/thirdTool");
+    }
+
 }
