@@ -25,37 +25,19 @@ $(document).ready(function () {
         queryThirdTool();
     });
 
+    // 悬浮框
     const suspensionBoxWrapper = $("#suspension-box-wrapper");
     $("#create").click(function () {
         $("#prompt").html("添加");
         suspensionBoxWrapper.fadeIn(300);
-    });
-
-    $("#edit-sure-button").click(function () {
-        let toolName = $("#tool-name").val();
-        let toolType = $("#tool-type-selector option:selected").val();
-        let link = $("#link-address").val();
-        if (isEmpty(toolName) || isEmpty(link)) {
-            alertWarning("操作失败！工具名称或链接地址不能为空!");
-        } else {
+        let url = "/back/createThirdTool";
+        $("#edit-sure-button").click(function () {
+            let toolName = $("#tool-name").val();
+            let toolType = $("#tool-type-selector option:selected").val();
+            let link = $("#link-address").val();
             let data = {"toolName": toolName, "toolType": toolType, "link": link};
-            $.ajax({
-                method: "POST",
-                // url: "/back/createThirdTool",
-                data: data,
-                dataType: "json",
-                success: function (r) {
-                    if (r.code === 0) {
-                        alertInfo(r.msg + " " + r.result)
-                    } else {
-                        alertWarning(r.msg);
-                    }
-                }
-            });
-        }
-
-        // 模拟点击了取消按钮以隐藏悬浮框
-        $("#edit-cancel-button").trigger("click");
+            suspensionBoxSure(data, url);
+        });
     });
 
     $("#edit-cancel-button").click(function () {
@@ -67,6 +49,98 @@ $(document).ready(function () {
 
     // 初始化显示当前页码
     pageLabel.append("当前第" + pageNumber + "页");
+
+    // 设置定时器不断检测编辑或删除按钮是否被点击，注意这里被调用函数没有括号
+    setInterval(doAction, 1000);
+    function doAction() {
+        doEdit();
+        doDelete();
+    }
+
+    // doEdit 还是有问题
+    function doEdit() {
+        let pageSize = $("#size-selector option:selected").text();
+        for (let i = 0; i < pageSize; i++) {
+            let editId = "#edit" + i.toString();
+            let id = "#code" + i.toString();
+            let toolNameId = "#tool-name" + i.toString();
+            let linkAddId = "#link-add" + i.toString();
+            editAction(editId, id, toolNameId, linkAddId);
+        }
+    }
+
+    function editAction(editId, id, toolNameId, linkAddId) {
+        $(editId).click(function () {
+            $("#prompt").html("编辑");
+            console.log($(toolNameId).text());
+            $("#tool-name").val = ($(toolNameId).text());
+            console.log($("#tool-name").text());
+            $("#link-address").html($(linkAddId).text());
+            suspensionBoxWrapper.fadeIn(300);
+            let idVal = $(id).text();
+            let url = "/back/updateThirdTool";
+            $("#edit-sure-button").click(function () {
+                let toolName = $("#tool-name").val();
+                let toolType = $("#tool-type-selector option:selected").val();
+                let link = $("#link-address").val();
+                let data = {"id": idVal, "toolName": toolName, "toolType": toolType, "link": link};
+                // 打印多次 执行多次？？
+                console.log(data);
+                suspensionBoxSure(data, url);
+            });
+        });
+    }
+
+    function doDelete() {
+        let pageSize = $("#size-selector option:selected").text();
+        for (let i = 0; i < pageSize; i++) {
+            let buttonId = "#delete" + i.toString();
+            let id = "#code" + i.toString();
+            $(buttonId).click(function () {
+                let data = {"id": $(id).text()};
+                $.ajax({
+                    method: "POST",
+                    url: "/back/deleteThirdTool",
+                    data: data,
+                    dataType: "json",
+                    success: function (r) {
+                        if (r.code === 0) {
+                            alertInfo(r.msg + " " + r.result)
+                        } else {
+                            alertWarning(r.msg);
+                        }
+                    }
+                });
+            });
+        }
+    }
+
+    /**
+     * 悬浮框上面确定按钮的事件函数
+     * @param data  传入的参数
+     * @param url   传入的url
+     */
+    function suspensionBoxSure(data, url) {
+        if (isEmpty(data.toolName) || isEmpty(data.link)) {
+            alertWarning("操作失败！工具名称或链接地址不能为空!");
+        } else {
+            $.ajax({
+                method: "POST",
+                url: url,
+                data: data,
+                dataType: "json",
+                success: function (r) {
+                    if (r.code === 0) {
+                        alertInfo(r.msg + " " + r.result)
+                    } else {
+                        alertWarning(r.msg);
+                    }
+                }
+            });
+        }
+        // 模拟点击了取消按钮以隐藏悬浮框
+        $("#edit-cancel-button").trigger("click");
+    }
 
     /**
      * 查询第三方工具，limit (pageNumber - 1) * pageSize, pageNumber * pageSize
@@ -143,10 +217,12 @@ $(document).ready(function () {
 
         let idCell = document.createElement("td");
         idCell.className = "code-td";
+        idCell.id = "code" + serial;
         idCell.innerHTML = data.id;
         row.appendChild(idCell);
 
         let nameCell = document.createElement("td");
+        nameCell.id = "tool-name" + serial;
         nameCell.innerHTML = data.toolName;
         row.appendChild(nameCell);
 
@@ -155,6 +231,7 @@ $(document).ready(function () {
         row.appendChild(typeCell);
 
         let linkCell = document.createElement("td");
+        linkCell.id = "link-add" + serial;
         linkCell.className = "link-td";
         linkCell.innerHTML = data.link;
         row.appendChild(linkCell);

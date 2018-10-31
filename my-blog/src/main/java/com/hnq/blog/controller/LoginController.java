@@ -99,4 +99,12 @@ public class LoginController extends AbstractController {
         return new ModelAndView("backstage/unauthorized");
     }
 
+    /**
+     * 管理员主页面
+     */
+    @RequestMapping(value = "/dashboard")
+    public ModelAndView toDashboard() {
+        return new ModelAndView("backstage/dashboard");
+    }
+
 }

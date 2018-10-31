@@ -47,11 +47,13 @@ public class ThirdToolServiceImpl implements IThirdToolService {
 
     @Override
     public int deleteThirdTool(Integer toolId) {
+        logger.info("==> deleteThirdTool toolId={}", toolId);
         return thirdToolMapper.deleteByPrimaryKey(toolId);
     }
 
     @Override
     public int updateThirdTool(ThirdTool thirdTool) {
+        logger.info("===> updateThirdTool thirdTool={}", thirdTool);
         return thirdToolMapper.updateByPrimaryKeySelective(thirdTool);
     }
 
