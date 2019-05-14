@@ -5,7 +5,7 @@
 ![Maven](https://img.shields.io/badge/Maven-3.5.0-yellowgreen.svg)
  * Contains some actual projects
 
-### crawler-demo01 module
+### crawler-demo module
  * Write a stable crawler with spring boot
    * 1.reptile Baidu stock market pass  https://gupiao.baidu.com/concept/  summary data above
    * 2.Get today's price data for a stock:  
@@ -13,6 +13,7 @@
    * database tables see tables.sql under resources
     
 ### mail-sender module
+### mail-sender02 module
  * A simple mail sender to send mail
  * Note： Pay attention to modify the account and password when using
  
@@ -30,6 +31,4 @@
  * Note： When sending a text message, please add a signature after the content: 【XX company or XX network name】, 
  otherwise it will be blocked.  
  Pay attention to modify the uid, key and phoneNumber when using
-
-### my-blog module
 

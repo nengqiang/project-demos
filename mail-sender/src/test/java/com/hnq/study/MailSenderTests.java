@@ -16,7 +16,7 @@ import java.io.File;
  * @date 2018/9/4
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MailSenderApplication.class)
+@SpringBootTest(classes = MailSenderApp.class)
 public class MailSenderTests {
 
     @Autowired

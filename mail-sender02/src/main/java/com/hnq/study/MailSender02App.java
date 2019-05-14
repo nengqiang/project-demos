@@ -1,18 +1,20 @@
 package com.hnq.study;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author henengqiang
- * @date 2018/9/4
+ * @date 2019/05/14
  */
 @SpringBootApplication
-public class MailSenderApplication {
+@Slf4j
+public class MailSender02App {
 
     public static void main(String[] args) {
-        SpringApplication.run(MailSenderApplication.class);
-        System.out.println("==========>>MailSenderApplication Start Success!");
+        SpringApplication.run(MailSender02App.class);
+        log.info(">>> MailSender02App Start Success!");
     }
 
 }
