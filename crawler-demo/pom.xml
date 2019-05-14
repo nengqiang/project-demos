@@ -5,18 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.hnq.crawler</groupId>
-    <artifactId>crawler-demo01</artifactId>
+    <artifactId>crawler-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>crawler-demo01</name>
+    <name>crawler-demo</name>
     <description>crawler data from https://gupiao.baidu.com/concept/</description>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.0.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
 
     <properties>
         <javax.servlet.version>3.1.0</javax.servlet.version>
@@ -29,11 +22,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -51,13 +39,6 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${mybatis-spring-boot.version}</version>
-        </dependency>
-
-        <!-- 测试依赖 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
 
         <!--
@@ -101,14 +82,6 @@
                 <configuration>
                     <configurationFile>src/main/resources/autogen/generatorConfig.xml</configurationFile>
                     <overwrite>true</overwrite>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
                 </configuration>
             </plugin>
         </plugins>
