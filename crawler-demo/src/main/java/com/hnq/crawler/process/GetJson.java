@@ -1,5 +1,6 @@
 package com.hnq.crawler.process;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -77,7 +78,7 @@ public class GetJson {
         return null;
     }
 
-    private JSONObject getJsonString(String str, int comeFrom) {
+    private JSONObject getJsonString(String str, int comeFrom) throws JSONException {
         if (comeFrom == 1) {
             return new JSONObject(str);
         } else if (comeFrom == 2) {

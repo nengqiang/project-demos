@@ -1,4 +1,4 @@
-package com.hnq.crawler;
+package com.hnq.crawler.controller;
 
 import com.hnq.crawler.service.BaiduHotDownService;
 import org.springframework.beans.factory.annotation.Autowired;
