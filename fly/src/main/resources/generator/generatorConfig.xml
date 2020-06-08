@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="generate-dao" targetRuntime="MyBatis3">
+        <property name="mergeable" value="false"/>
+
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$"/>
+            <property name="replaceString" value="Criteria"/>
+        </plugin>
+
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressMethodComments" value="false"/>
+            <property name="suppressXMLComments" value="false"/>
+            <property name="suppressClassComments" value="false"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="false" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/fly"
+                        userId="root"
+                        password="password">
+            <!--MySQL 8.x 需要指定服务器的时区-->
+            <property name="serverTimezone" value="UTC"/>
+            <!--MySQL 不支持 schema 或者 catalog 所以需要添加这个-->
+            <!--参考 : http://www.mybatis.org/generator/usage/mysql.html-->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.hnq.fly.po"
+                            targetProject="src/main/java/"><!-- src/generated/java -->
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="sqlmap/auth"
+                         targetProject="src/main/resources/"> <!-- src/generated/resources -->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.hnq.fly.dao"
+                             targetProject="src/main/java/"> <!-- src/generated/java -->
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table schema="fly" tableName="sys_user" domainObjectName="SysUser" >
+            <!--<property name="useActualColumnNames" value="true"/>-->
+            <!-- 是否使用自增主键，使用了insert语句里面就没有id字段 -->
+            <generatedKey column="Id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="fly" tableName="sys_logs" domainObjectName="SysLogs" >
+            <generatedKey column="Id" sqlStatement="MySql" identity="true" />
+        </table>
+        <!--<table schema="fly" tableName="sys_role" domainObjectName="SysRole" >
+            <generatedKey column="Id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="fly" tableName="sys_user_role" domainObjectName="SysUserRole" >
+            <generatedKey column="Id" sqlStatement="MySql" identity="true" />
+        </table>-->
+        <!--<table schema="fly" tableName="sys_permission" domainObjectName="SysPermission" >
+            <generatedKey column="Id" sqlStatement="MySql" identity="true" />
+        </table>-->
+        <!--<table schema="fly" tableName="sys_role_permission" domainObjectName="SysRolePermission" >
+            <generatedKey column="Id" sqlStatement="MySql" identity="true" />
+        </table>-->
+
+    </context>
+
+</generatorConfiguration>

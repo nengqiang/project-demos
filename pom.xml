@@ -21,13 +21,25 @@
         <module>mail-sender</module>
         <module>crawler-demo</module>
         <module>mail-sender02</module>
+        <module>fly</module>
     </modules>
 
     <properties>
         <lombok.version>1.16.8</lombok.version>
+        <mybatis.version>1.3.2</mybatis.version>
+        <mybatis-generator-maven-plugin.version>1.4.0</mybatis-generator-maven-plugin.version>
+        <mysql.version>8.0.18</mysql.version>
+        <mybatis.page-helper.version>5.1.2</mybatis.page-helper.version>
+        <jwt.version>0.9.0</jwt.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.hnq.toolkit</groupId>
+            <artifactId>hnq-toolkit</artifactId>
+            <version>1.1.3-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -42,6 +54,10 @@
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>objenesis</artifactId>
+                    <groupId>org.objenesis</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
