@@ -43,7 +43,7 @@ public class UserBO extends BaseEntity {
 
     public interface Status {
         String ENABLED = "ENABLED";
-        String DISABLE = "DISABLE";
+        String DISABLED = "DISABLED";
         String LOCKED = "LOCKED";
     }
 

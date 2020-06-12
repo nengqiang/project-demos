@@ -60,6 +60,11 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
+    public List<PermissionBO> listPermissionsByUserNo(Long userNo) {
+        return BeanUtils.convert(permissionRepository.listPermissionsByUserNo(userNo), PermissionBO.class);
+    }
+
+    @Override
     public List<PermissionBO> listAllPermissions() {
         return BeanUtils.convert(permissionRepository.listAllPermissions(), PermissionBO.class);
     }

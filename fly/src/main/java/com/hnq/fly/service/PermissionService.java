@@ -20,6 +20,8 @@ public interface PermissionService {
 
     List<PermissionBO> listPermissionsByRoleId(Long roleId);
 
+    List<PermissionBO> listPermissionsByUserNo(Long userNo);
+
     List<PermissionBO> listAllPermissions();
 
     List<PermissionBO> listParentPermissions();

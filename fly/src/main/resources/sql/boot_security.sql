@@ -12,7 +12,7 @@ create table sys_user
     email        varchar(50)                           default ''        null comment '邮箱',
     birthday     date                                                    null comment '生日',
     sex          varchar(1)                                              null comment '性别：男，女',
-    status       enum ('ENABLED', 'DISABLE', 'LOCKED') default 'ENABLED' null comment '状态：ENABLED, DISABLE, LOCKED',
+    status       enum ('ENABLED', 'DISABLED', 'LOCKED') default 'ENABLED' null comment '状态：ENABLED, DISABLED, LOCKED',
     create_time  datetime                                                not null comment '创建时间',
     update_time  datetime                                                not null comment '修改时间',
     constraint u_name
