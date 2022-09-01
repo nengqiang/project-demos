@@ -21,7 +21,7 @@
         <mybatis-spring-boot.version>2.0.0</mybatis-spring-boot.version>
         <mybatis-generator-maven-plugin.version>1.3.7</mybatis-generator-maven-plugin.version>
         <mysql-driver.version>5.1.3</mysql-driver.version>
-        <jsoup.version>1.10.3</jsoup.version>
+        <jsoup.version>1.15.3</jsoup.version>
         <org.json.version>20090211</org.json.version>
         <io.webfolder.version>3.0.6</io.webfolder.version>
     </properties>
